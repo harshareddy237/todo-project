@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-gray-600 p-18 flex flex-col gap-5 items-center">
+  <!-- <h1>this is todo project</h1>
+    {% for task in tasks %}
+    {{task.title}}<br>
+    {{task.descrption}}<br>
+    {% endfor %} -->
+     {% for task in tasks %}
+    <div class="bg-white w-[335px] p-7 rounded-xl flex flex-col gap-2">
+        <div class="flex justify-between items-center">
+
+        <p class="text-green-500 text-xl font-bold {% if task.completed %}
+                line_through
+            {% endif %}"> {{task.title}}</p> 
+
+        <a href="{% url 'toggle_complete' task.id %}">
+        <i class='bxr  bx-check-circle text-2xl text-blue-500' ></i>
+        </a>
+        
+        </div>
+        <p class="text-gray-400 font-bold"> {{task.descrption}}</p>
+        <hr>
+        <div class="flex justify-between">
+            {% if task.completed %}
+            <p class="text-red-500 font-bold">completed</p>
+            {% else %}
+        <!-- </div> -->
+        <!-- <div class="flex justify-between items-center"> -->
+            <!-- <div> -->
+                <span class="font-bold text-gray-600">{{task.due_time}}</span>
+                <span class="font-semibold text-gray-500">{{task.due_date}}</span>
+                {% endif %}
+                <a href="{% url 'delete' task.id %}">
+            <!-- </div> -->
+            <i class='bxr  bx-trash text-2xl text-red-500'></i>
+            </a>
+        </div>
+    </div>
+{% endfor %}
+</body>
+</html>
