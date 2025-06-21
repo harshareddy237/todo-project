@@ -20,7 +20,7 @@ from app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("har/",index,name="index"),
+    path("",index,name="index"),
     path("toggle_complete/<str:task_id>",toggle_complete,name="toggle_complete"),
     path("delete/<str:task_id>",delete,name="delete"),
 ]
